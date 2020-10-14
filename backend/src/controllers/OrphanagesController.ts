@@ -58,7 +58,7 @@ export default{
             about,
             instructions,
             opening_hours,
-            open_on_weekends,
+            open_on_weekends: open_on_weekends === 'true',
             images
         };
 
@@ -77,10 +77,12 @@ export default{
             }))
 
         });
+        const finalData = schema.cast(data);
 
         // mostra qual campo não esta valido e cancela tudo
         await schema.validate(data, {
             abortEarly: false,
+
         });
     
         const orphanage = orphanagesRepository.create(data);
